@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Optional;
 
-public class EmployeeDao {
+class EmployeeDao {
 
     private final DataSource ds;
 
