@@ -4,6 +4,6 @@ public class BarImpl implements Bar {
 
     @Override
     public String bar() {
-        return "It's BarImpl";
+        return "it's BarImpl";
     }
 }
