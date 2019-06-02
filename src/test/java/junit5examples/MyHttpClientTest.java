@@ -25,13 +25,14 @@ class MyHttpClientTest {
     void setUp() {
         wireMockServer.start();
         WireMock.configureFor(wireMockServer.port());
-        stubFor(get(urlEqualTo("/")).willReturn(
-                aResponse().withBody("Mock response body").withStatus(200)));
         sut = new MyHttpClient(String.format("http://localhost:%d/", wireMockServer.port()));
     }
 
     @Test
     void itReturnsResponseBody() throws IOException {
+        stubFor(get(urlEqualTo("/")).willReturn(
+                aResponse().withBody("Mock response body").withStatus(200)));
+
         String actual = sut.get();
 
         assertThat(actual).isEqualTo("Mock response body");
