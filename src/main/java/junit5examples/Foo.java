@@ -1,8 +1,6 @@
 package junit5examples;
 
-public class Foo {
+public interface Foo {
 
-    String greetings() {
-        return "hello";
-    }
+    String greetings();
 }
