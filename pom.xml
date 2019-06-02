@@ -52,7 +52,7 @@
                             <name>mysql:5.7.26</name>
                             <run>
                                 <ports>
-                                    <port>13306:3306</port>
+                                    <port>23306:3306</port>
                                 </ports>
                                 <volumes>
                                     <bind>
