@@ -26,6 +26,7 @@ class EmployeeDaoIT {
         assertThat(actual).isPresent();
         //noinspection OptionalGetWithoutIsPresent
         Employee employee = actual.get();
+        assertThat(employee.getId()).isEqualTo(1);
         assertThat(employee.getName()).isEqualTo("Jane Doe");
         assertThat(employee.getHiredAt()).isEqualTo(LocalDateTime.of(2019, 4, 1, 9, 0, 0));
     }
