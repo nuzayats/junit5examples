@@ -24,7 +24,7 @@ class MyHttpClientTest {
     @BeforeEach
     void setUp() {
         wireMockServer.start();
-        WireMock.configureFor("localhost", wireMockServer.port());
+        WireMock.configureFor(wireMockServer.port());
         stubFor(get(urlEqualTo("/")).willReturn(
                 aResponse().withBody("Mock response body").withStatus(200)));
         sut = new MyHttpClient(String.format("http://localhost:%d/", wireMockServer.port()));
