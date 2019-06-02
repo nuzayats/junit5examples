@@ -8,15 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MyHttpClientTest {
-
-    // jukito
-    // wiremock
-    // mockito
 
     private WireMockServer wireMockServer = new WireMockServer(wireMockConfig().dynamicPort());
     private MyHttpClient sut;
