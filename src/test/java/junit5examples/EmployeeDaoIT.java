@@ -1,8 +1,8 @@
 package junit5examples;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.Test;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -15,13 +15,11 @@ class EmployeeDaoIT {
 
     @Test
     void name() throws SQLException {
-        EmployeeDao sut = new EmployeeDao(() -> {
-            try {
-                return DriverManager.getConnection("jdbc:mysql://localhost:13306/testdb", "root", "my-secret-pw");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        BasicDataSource ds = new BasicDataSource();
+        ds.setUrl("jdbc:mysql://localhost:13306/testdb");
+        ds.setUsername("root");
+        ds.setPassword("my-secret-pw");
+        EmployeeDao sut = new EmployeeDao(ds);
 
         Optional<Employee> actual = sut.find(1);
 

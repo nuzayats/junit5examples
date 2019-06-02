@@ -1,5 +1,6 @@
 package junit5examples;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,14 +9,13 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 public class EmployeeDao {
 
-    private final Supplier<Connection> connectionSupplier;
+    private final DataSource ds;
 
-    EmployeeDao(Supplier<Connection> connectionSupplier) {
-        this.connectionSupplier = connectionSupplier;
+    EmployeeDao(DataSource ds) {
+        this.ds = ds;
     }
 
     Optional<Employee> find(long id) throws SQLException {
@@ -23,7 +23,7 @@ public class EmployeeDao {
         String name;
         Timestamp hiredAt;
 
-        try (Connection cn = connectionSupplier.get();
+        try (Connection cn = ds.getConnection();
              PreparedStatement ps = cn.prepareStatement("SELECT * FROM employees WHERE id = ?")) {
             ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
